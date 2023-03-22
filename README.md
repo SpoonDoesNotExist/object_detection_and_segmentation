@@ -1,1 +1,8 @@
-# object_detection_and_segmentation
+# Object detection and segmentation
+
+---
+
+## App structure
+![](pictures/app_diagram.png)
+
+---
