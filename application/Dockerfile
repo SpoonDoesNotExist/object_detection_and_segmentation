@@ -15,4 +15,4 @@ RUN mkdir -p /app/application/logs
 RUN date >> /app/application/build_date.txt
 
 EXPOSE 5000
-CMD ["python3", "run.py"]
+CMD ["python3", "main.py"]
