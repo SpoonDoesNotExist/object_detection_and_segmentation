@@ -27,5 +27,3 @@ def demo():
 def display_video(filename):
     video_url = url_for('static', filename=filename + '.mp4')
     return render_template(VIDEO_TEMPLATE_NAME, video_url=video_url)
-
-# http://192.168.0.106:5000/api/display/clodding_train
