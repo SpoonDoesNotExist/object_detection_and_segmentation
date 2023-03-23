@@ -6,12 +6,18 @@ DEV_RUN_MODE = 'dev'
 PROD_RUN_MODE = 'production'
 APPLICATION_ROOT = '/api'
 
-DOCKER_BUILD_DATETIME = 'application/build_date.txt'
+DOCKER_BUILD_DATETIME = 'build_date.txt'
 
-ROOT_PATH = Path('application')
+ROOT_PATH = Path('.')
 DATA_PATH = ROOT_PATH / 'data'
 
-LOGING_PATH = DATA_PATH / 'log_file.log'
+CONTROLLER_BASE_DATA = Path('../data')
+UPLOAD_FOLDER = CONTROLLER_BASE_DATA / 'upload_files'
+TEMPLATE_FOLDER = CONTROLLER_BASE_DATA / 'templates'
 
-TRAIN_METRICS_PATH = DATA_PATH / 'train_metrics.txt'
-TEST_METRICS_PATH = DATA_PATH / 'test_metrics.txt'
+LOGING_PATH = DATA_PATH / 'logs' / 'log_file.log'
+
+TRAIN_METRICS_PATH = CONTROLLER_BASE_DATA / 'train_metrics.txt'
+TEST_METRICS_PATH = CONTROLLER_BASE_DATA / 'test_metrics.txt'
+
+VIDEO_TEMPLATE_NAME='video.html'
