@@ -11,7 +11,7 @@ COPY .. /app
 
 RUN mkdir -p /app/application/data/upload_files /app/application/data/logs, /app/application/data/metrics
 
-RUN date >> /app/application/build_date.txt
+RUN date >> /app/application/data/build_date.txt
 
 EXPOSE 5000
 CMD ["python3", "main.py"]
