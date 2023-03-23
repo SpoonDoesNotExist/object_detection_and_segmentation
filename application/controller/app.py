@@ -4,7 +4,8 @@ from logging.handlers import RotatingFileHandler
 from flask import Flask
 import logging
 
-from application.config import DEFAULT_PORT, DEV_RUN_MODE, PROD_RUN_MODE, APPLICATION_ROOT, LOGING_PATH, HOST
+from config import DEFAULT_PORT, DEV_RUN_MODE, PROD_RUN_MODE, APPLICATION_ROOT, LOGING_PATH, HOST, \
+    UPLOAD_FOLDER, TEMPLATE_FOLDER
 
 
 def check_env_vars():
@@ -61,10 +62,21 @@ host = HOST
 port = DEFAULT_PORT
 logging_path = LOGING_PATH
 
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    static_folder=UPLOAD_FOLDER,
+    template_folder=TEMPLATE_FOLDER
+)
+
+print(f'TEMPLATE_FOLDER: {TEMPLATE_FOLDER}')
+
 app.config['APPLICATION_ROOT'] = APPLICATION_ROOT
+
+from .info import info_page
+from .model import model_page
+
+app.register_blueprint(model_page, url_prefix='/api')
+app.register_blueprint(info_page, url_prefix='/api')
 
 init_logging()
 check_env_vars()
-
-# import application.controller

@@ -1,11 +1,13 @@
-from flask import jsonify
+from flask import jsonify, Blueprint
 
-from .app import app
-from application.service.info_service import InfoService
+from controller.app import app
+from service.info_service import InfoService
 
-info_service = InfoService(app)
+info_page = Blueprint('info_page', __name__)
+
+info_service = InfoService(app.logger)
 
 
-@app.route('/info', methods=['GET'])
+@info_page.route('/info', methods=['GET'])
 def info():
     return jsonify(info_service.get_credentials())
