@@ -1,10 +1,9 @@
-from application.config import DOCKER_BUILD_DATETIME, TRAIN_METRICS_PATH, TEST_METRICS_PATH
+from config import DOCKER_BUILD_DATETIME, TRAIN_METRICS_PATH, TEST_METRICS_PATH
 
-from .model_service import ModelService
 
 class InfoService:
-    def __init__(self, app):
-        self.app = app
+    def __init__(self, logger):
+        self.logger = logger
 
     def get_credentials(self):
         docker_datetime = self._read_data(DOCKER_BUILD_DATETIME)

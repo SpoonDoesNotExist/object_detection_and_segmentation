@@ -1,5 +1,5 @@
-from application.config import DEV_RUN_MODE, PROD_RUN_MODE
-from application.controller.app import app, port, host, run_mode
+from config import DEV_RUN_MODE, PROD_RUN_MODE
+from controller.app import app, port, host, run_mode
 from waitress import serve
 
 if __name__ == '__main__':
