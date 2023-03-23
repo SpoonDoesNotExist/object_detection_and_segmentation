@@ -9,8 +9,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 
 COPY .. /app
 
-RUN mkdir -p /app/application/data
-RUN mkdir -p /app/application/logs
+RUN mkdir -p /app/application/data/upload_files /app/application/data/logs
 
 RUN date >> /app/application/build_date.txt
 
