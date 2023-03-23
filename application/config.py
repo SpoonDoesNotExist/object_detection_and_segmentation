@@ -17,7 +17,7 @@ TEMPLATE_FOLDER = CONTROLLER_BASE_DATA / 'templates'
 
 LOGING_PATH = DATA_PATH / 'logs' / 'log_file.log'
 
-TRAIN_METRICS_PATH = CONTROLLER_BASE_DATA / 'train_metrics.txt'
-TEST_METRICS_PATH = CONTROLLER_BASE_DATA / 'test_metrics.txt'
+TRAIN_METRICS_PATH = CONTROLLER_BASE_DATA / 'metrics' / 'train_metrics.txt'
+TEST_METRICS_PATH = CONTROLLER_BASE_DATA / 'metrics' / 'test_metrics.txt'
 
-VIDEO_TEMPLATE_NAME='video.html'
+VIDEO_TEMPLATE_NAME = 'video.html'
