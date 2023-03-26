@@ -21,3 +21,4 @@ TRAIN_METRICS_PATH = CONTROLLER_BASE_DATA / 'metrics' / 'train_metrics.txt'
 TEST_METRICS_PATH = CONTROLLER_BASE_DATA / 'metrics' / 'test_metrics.txt'
 
 VIDEO_TEMPLATE_NAME = 'video.html'
+UPLOAD_TEMPLATE_NAME = 'index.html'
