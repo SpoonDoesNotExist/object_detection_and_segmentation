@@ -68,8 +68,6 @@ app = Flask(
     template_folder=TEMPLATE_FOLDER
 )
 
-print(f'TEMPLATE_FOLDER: {TEMPLATE_FOLDER}')
-
 app.config['APPLICATION_ROOT'] = APPLICATION_ROOT
 
 from .info import info_page
