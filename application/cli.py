@@ -9,7 +9,7 @@ cli_app = typer.Typer()
 
 
 @cli_app.command()
-def demo():
+def demo(file):
     raise NotImplementedError()
 
 
