@@ -24,7 +24,7 @@ class BaseModel(ABC):
         """
 
     @abstractmethod
-    def demo(self):
+    def demo(self, file_path):
         """Runs real-time demo with provided image or video file."""
 
     @abstractmethod
