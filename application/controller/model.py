@@ -1,10 +1,9 @@
 import os
 
-from flask import request, flash, redirect, jsonify, url_for, Blueprint, render_template, Response
+from flask import request, flash, redirect, Blueprint, render_template, Response, make_response, abort
 from werkzeug.utils import secure_filename
-import cv2
 
-from config import VIDEO_TEMPLATE_NAME, UPLOAD_TEMPLATE_NAME
+from config import VIDEO_TEMPLATE_NAME, UPLOAD_TEMPLATE_NAME, VIDEO_FEED_MIMETYPE, ERROR_TEMPLATE_NAME
 from controller.app import app
 from service.model_service import ModelService
 
@@ -19,7 +18,11 @@ def index():
 
 @model_page.route('/demo/<filename>')
 def demo(filename):
-    print(f'>>> {filename}')
+    file_path = f'{app.static_folder}/{filename}'
+    if not os.path.exists(file_path):
+        print('aborting')
+        abort(404)
+
     return render_template(VIDEO_TEMPLATE_NAME, filename=filename)
 
 
@@ -35,15 +38,20 @@ def upload():
     filename = secure_filename(file.filename)
     file.save(f'{app.static_folder}/{filename}')
 
-    filename = os.path.splitext(filename)[0]
     app_root = app.config['APPLICATION_ROOT']
+
     return redirect(f'{app_root}/demo/{filename}')
 
 
 @model_page.route('/demo/<filename>/video_feed')
 def video_feed(filename):
-    print(f'video_feed: {filename}')
     return Response(
-        model_service.demo('C:/Users/eduard/Desktop/clodding_train.mp4'),
-        mimetype='multipart/x-mixed-replace; boundary=frame'
+        model_service.demo(f'{app.static_folder}/{filename}'),
+        mimetype=VIDEO_FEED_MIMETYPE
     )
+
+
+@model_page.errorhandler(404)
+def not_found_error(e):
+    app.logger.info(str(e))
+    return render_template(ERROR_TEMPLATE_NAME, text=str(e))
