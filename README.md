@@ -19,7 +19,6 @@ Run real-time demo with provided image or video file:
 
     python cli.py demo --file=<file path>
 
-<br />
 
 ## API
 
@@ -40,3 +39,16 @@ After upload, you'll be redirected to **/api/demo/<file name>**
 Page with real-time demo on your file:
     
     GET /api/demo/<file name>
+
+
+## Technologies
+
+- Python
+- OpenCV
+- Flask
+
+
+## Creator
+*Eduard Khusnutdinov, Tomsk State University, 3d grade student*
+
+
