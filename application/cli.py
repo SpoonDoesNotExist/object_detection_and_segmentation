@@ -1,16 +1,17 @@
+import logging
+
 import typer as typer
 
-from application.model.model import MyDetectionSegmentationModel
+from service.model_service import ModelService
 
-det_seg_model = MyDetectionSegmentationModel()
-det_seg_model.warmup()
+model_service = ModelService()
 
 cli_app = typer.Typer()
 
 
 @cli_app.command()
-def demo(file):
-    raise NotImplementedError()
+def demo(file_path):
+    model_service.demo_cli(file_path)
 
 
 @cli_app.command()
