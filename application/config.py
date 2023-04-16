@@ -11,6 +11,8 @@ DOCKER_BUILD_DATETIME = 'build_date.txt'
 ROOT_PATH = Path('.')
 DATA_PATH = ROOT_PATH / 'data'
 
+MODEL_PATH = DATA_PATH / 'models' / 'model_state_dict.pth'
+
 CONTROLLER_BASE_DATA = Path('../data')
 UPLOAD_FOLDER = CONTROLLER_BASE_DATA / 'upload_files'
 TEMPLATE_FOLDER = CONTROLLER_BASE_DATA / 'templates'
@@ -25,3 +27,7 @@ UPLOAD_TEMPLATE_NAME = 'index.html'
 ERROR_TEMPLATE_NAME = 'error.html'
 
 VIDEO_FEED_MIMETYPE = 'multipart/x-mixed-replace; boundary=frame'
+
+DRAW_COLOR = (0, 255, 0)
+DRAW_COLOR_MAX = (0, 0, 255)
+CONTOUR_AREA_THRESHOLD = 5e-4
