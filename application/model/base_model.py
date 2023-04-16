@@ -24,10 +24,6 @@ class BaseModel(ABC):
         """
 
     @abstractmethod
-    def demo(self, file_path):
-        """Runs real-time demo with provided image or video file."""
-
-    @abstractmethod
     def process(self, frame):
         """Process one frame
 
