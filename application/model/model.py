@@ -24,7 +24,7 @@ class MyDetectionSegmentationModel(BaseModel):
         """
         super().__init__()
         self.mask_threshold = mask_threshold
-        self.model = UNet(n_channels=3, n_classes=1, out_channels=8)
+        self.model = UNet(n_channels=3, n_classes=1, out_channels=8, upsample=False)
         self.logger = logger
 
     def process(self, frame):
@@ -64,7 +64,7 @@ class MyDetectionSegmentationModel(BaseModel):
 
         valid_dataloader = DataLoader(cds, batch_size=16, shuffle=False)
 
-        trainer = pl.Trainer(gpus=1, max_epochs=30, log_every_n_steps=10)
+        trainer = pl.Trainer(gpus=1, max_epochs=30, log_every_n_steps=10, logger=self.logger)
         trainer.test(self.model, valid_dataloader)
 
     def train(self, dataset_path):
@@ -87,7 +87,7 @@ class MyDetectionSegmentationModel(BaseModel):
         )
         valid_dataloader = DataLoader(valid_dataset, batch_size=16, shuffle=False)
 
-        trainer = pl.Trainer(gpus=1, max_epochs=30, log_every_n_steps=10)
+        trainer = pl.Trainer(gpus=1, max_epochs=30, log_every_n_steps=10, logger=self.logger)
         trainer.fit(self.model, train_dataloader, valid_dataloader)
 
     def __get_contours(self, segmentation_mask):
