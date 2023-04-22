@@ -89,14 +89,14 @@ class ModelService:
                 areas = self.__calc_areas(clod_contours, frame_area)
                 clod_contours = self.__filter_contours(clod_contours, areas)
 
-                self.__draw_contours(frame, clod_contours, DRAW_COLOR, -1)
+                self.__draw_contours(frame, clod_contours, DRAW_COLOR)
                 self.__draw_max_contour(frame, clod_contours)
             else:
                 print(f'No clodds found')
 
             cv2.imshow('Frame', frame)
 
-    def __draw_contours(self, frame, contours, color, thickness=1):
+    def __draw_contours(self, frame, contours, color, thickness=2):
         """
         Draw contours on the given frame with the specified color.
 
