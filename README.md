@@ -1,12 +1,19 @@
-# Object detection and segmentation
+# Abnormal Clods Detection and Segmentation on Video
+
+---
+
+### Author
+
+Eduard Khusnutdinov, a 3rd grade student at Tomsk State University.
 
 ---
 
 ## App structure
+
 ![](pictures/app_diagram.png)
 
-
 ## CLI:
+
 Train model:
 
     python cli.py train --dataset=<dataset path>
@@ -18,7 +25,6 @@ Evaluate model:
 Run real-time demo with provided image or video file:
 
     python cli.py demo --file=<file path>
-
 
 ## API
 
@@ -36,19 +42,21 @@ After upload, you'll be redirected to **/api/demo/<file name>**
 
 ---
 
-Page with real-time demo on your file:
-    
-    GET /api/demo/<file name>
+Page where you can upload your file to run demo:
 
+    GET /api/index
+
+---
+
+Page with real-time demo on your file:
+
+    GET /api/demo/<file name>
 
 ## Technologies
 
 - Python
+- PyTorch Lightning
 - OpenCV
 - Flask
-
-
-## Creator
-*Eduard Khusnutdinov, Tomsk State University, 3d grade student*
 
 
