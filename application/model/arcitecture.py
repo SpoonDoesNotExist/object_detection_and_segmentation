@@ -36,10 +36,10 @@ class Down(nn.Module):
 
 
 class Up(nn.Module):
-    def __init__(self, in_channels, out_channels, bilinear=True):
+    def __init__(self, in_channels, out_channels, upsample=True):
         super().__init__()
 
-        if bilinear:
+        if upsample:
             self.up = nn.Upsample(scale_factor=2, mode='bilinear', align_corners=True)
         else:
             self.up = nn.ConvTranspose2d(in_channels // 2, in_channels // 2, kernel_size=2, stride=2)
@@ -61,7 +61,7 @@ class Up(nn.Module):
 
 
 class UNet(pl.LightningModule):
-    def __init__(self, n_channels, n_classes, out_channels):
+    def __init__(self, n_channels, n_classes, out_channels, upsample=True):
         super(UNet, self).__init__()
         self.n_channels = n_channels
         self.n_classes = n_classes
@@ -71,10 +71,10 @@ class UNet(pl.LightningModule):
         self.down2 = Down(out_channels * 2, out_channels * 4)
         self.down3 = Down(out_channels * 4, out_channels * 8)
         self.down4 = Down(out_channels * 8, out_channels * 8)
-        self.up1 = Up(out_channels * 8 * 2, out_channels * 4)
-        self.up2 = Up(out_channels * 4 * 2, out_channels * 2)
-        self.up3 = Up(out_channels * 2 * 2, out_channels)
-        self.up4 = Up(out_channels * 2, out_channels)
+        self.up1 = Up(out_channels * 8 * 2, out_channels * 4, upsample)
+        self.up2 = Up(out_channels * 4 * 2, out_channels * 2, upsample)
+        self.up3 = Up(out_channels * 2 * 2, out_channels, upsample)
+        self.up4 = Up(out_channels * 2, out_channels, upsample)
         self.outc = nn.Conv2d(out_channels, n_classes, kernel_size=1)
 
         self.preprocess = transforms.Compose([
