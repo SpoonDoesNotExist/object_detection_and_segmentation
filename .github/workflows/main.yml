@@ -29,6 +29,3 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_NAME }}/detection_and_segmentation_system:latest
-      - name: Up latest docker image
-        run: |
-          curl --silent --show-error --fail -X POST ${{ secrets.DEPLOYMENT_SERVER }}
