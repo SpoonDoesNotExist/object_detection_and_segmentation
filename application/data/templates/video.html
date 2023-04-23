@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8  offset-lg-2">
+            <h3 class="mt-5">Streaming file: {{filename}}</h3>
+            <img src="{{ url_for('model_page.video_feed', filename=filename) }}" width="40%">
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  obj_detection_and_segmentation:
+    restart: on-failure
+    build: ./application
+    ports:
+      - "8415:5000"
+    volumes:
+      - data:/application/data
+      - logs:/application/logs
