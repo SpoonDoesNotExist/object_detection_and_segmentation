@@ -3,7 +3,7 @@ FROM python:3.9-slim
 WORKDIR /app
 
 COPY requirements.txt /app
-RUN sudo apt-get install gcc
+RUN apt update && apt install -y gcc
 RUN python -m pip install --upgrade pip
 RUN --mount=type=cache,target=/root/.cache/pip \
     pip3 install -r requirements.txt
