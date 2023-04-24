@@ -39,8 +39,7 @@ class CloddDataset(Dataset):
 
         return {
             'image': image.transpose(-1, 0, 1),
-            'mask': np.expand_dims(mask, axis=0),
-            'file_path': file_path
+            'mask': np.expand_dims(mask, axis=0)
         }
 
     def __downscale(self, image):
@@ -90,8 +89,8 @@ class CloddDataset(Dataset):
         """
         img_info = self.coco.loadImgs(self.imgIds[index])[0]
 
-        file_path = TRAIN_PATH + '/' + img_info['file_name'].replace('images/9', 'images_base')
-        raw_img = cv2.imread(file_path)
+        file_path = TRAIN_PATH / img_info['file_name'].replace('images/9', 'images_base')
+        raw_img = cv2.imread(str(file_path))
 
         annIds = self.coco.getAnnIds(
             imgIds=img_info['id'],

@@ -8,6 +8,11 @@ Eduard Khusnutdinov, a 3rd grade student at Tomsk State University.
 
 ---
 
+## Work example
+![Working](pictures/demo.gif)
+
+---
+
 ## App structure
 
 ![](pictures/app_diagram.png)

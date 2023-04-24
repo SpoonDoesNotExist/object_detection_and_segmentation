@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import typer as typer
 
 from config import MASK_THRESHOLD
@@ -31,7 +33,7 @@ def train(dataset_path: str):
     :return: None
     """
     model = MyDetectionSegmentationModel(MASK_THRESHOLD)
-    model.train(dataset_path)
+    model.train(Path(dataset_path))
 
 
 @cli_app.command()

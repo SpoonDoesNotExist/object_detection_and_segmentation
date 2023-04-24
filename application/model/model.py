@@ -16,7 +16,7 @@ class MyDetectionSegmentationModel(BaseModel):
     A custom detection and segmentation model for identifying contours in images using a UNet architecture.
     """
 
-    def __init__(self, mask_threshold, logger=logging.getLogger()):
+    def __init__(self, mask_threshold, logger=None):
         """
 
         :param mask_threshold:  A threshold value for binarizing the output mask.
@@ -25,7 +25,12 @@ class MyDetectionSegmentationModel(BaseModel):
         super().__init__()
         self.mask_threshold = mask_threshold
         self.model = UNet(n_channels=3, n_classes=1, out_channels=8, upsample=False)
-        self.logger = logger
+
+        if logger is None:
+            logging.basicConfig(level=logging.DEBUG)
+            self.logger = logging.getLogger()
+        else:
+            self.logger = logger
 
     def process(self, frame):
         """
@@ -64,7 +69,7 @@ class MyDetectionSegmentationModel(BaseModel):
 
         valid_dataloader = DataLoader(cds, batch_size=16, shuffle=False)
 
-        trainer = pl.Trainer(gpus=1, max_epochs=30, log_every_n_steps=10, logger=self.logger)
+        trainer = pl.Trainer(gpus=1, max_epochs=30, log_every_n_steps=10)
         trainer.test(self.model, valid_dataloader)
 
     def train(self, dataset_path):
@@ -87,7 +92,7 @@ class MyDetectionSegmentationModel(BaseModel):
         )
         valid_dataloader = DataLoader(valid_dataset, batch_size=16, shuffle=False)
 
-        trainer = pl.Trainer(gpus=1, max_epochs=30, log_every_n_steps=10, logger=self.logger)
+        trainer = pl.Trainer(gpus=1, max_epochs=30, log_every_n_steps=10, accelerator='cpu')
         trainer.fit(self.model, train_dataloader, valid_dataloader)
 
     def __get_contours(self, segmentation_mask):
